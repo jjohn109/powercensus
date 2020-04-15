@@ -4,7 +4,7 @@ let
             resource = Web.BrowserContents("https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.html"),
             States = 
                 let 
-                    ExtractedTable = Html.Table(resource, {{"state_name", "[scope=""row""]:nth-last-child(3)"}, {"state_fips", "[align=""center""]:nth-last-child(2)"}, {"state_abbr", "[align=""center""]:nth-last-child(1)"}}, [RowSelector="TABLE[summary=""table showing ANSI state codes for the states and the District of Columbia""] > TBODY > TR"])
+                    ExtractedTable = Html.Table(resource, {{"Name", "[scope=""row""]:nth-last-child(3)"}, {"FIPS State Numeric Code", "[align=""center""]:nth-last-child(2)"}, {"Official USPS Code", "[align=""center""]:nth-last-child(1)"}}, [RowSelector="TABLE[summary=""table showing ANSI state codes for the states and the District of Columbia""] > TBODY > TR"])
                 in
                     ExtractedTable,
             Territories = 
