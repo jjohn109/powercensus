@@ -13,7 +13,7 @@ let
     geography = "urban area",
 
 /* Variables */
-    variables.url = "https://api.census.gov/data/" & vintage & "/" & dataset & "/variables.json",
+    variables.url = "https://api.census.gov/data/" & vintage & "/acs/" dataset & "/variables.json",
     variables.response = Web.Contents(variables.url),
     variables.responseMetadata = Value.Metadata(variables.response),
     variables.responseCode = variables.responseMetadata[Response.Status],
@@ -56,7 +56,7 @@ let
             columnTypes,
     
 /* Geographies */
-    geographies.url = "https://api.census.gov/data/" & vintage & "/" & dataset & "/geography.json",
+    geographies.url = "https://api.census.gov/data/" & vintage "/acs/" & dataset & "/geography.json",
     geographies.response = Web.Contents(geographies.url),
     geographies.responseMetadata = Value.Metadata(geographies.response),
     geographies.responseCode = geographies.responseMetadata[Response.Status],
@@ -69,7 +69,7 @@ let
     geographies.wildcard = Table.TransformColumns(geographies.requires,combineValues("wildcard")),
     
 /* Response */
-    data.url = "https://api.census.gov/data/" & vintage & "/" & dataset & "?get=" & Text.Combine(columns, ",") & "&for=" & geography,
+    data.url = "https://api.census.gov/data/" & vintage & "/acs/" & dataset & "?get=" & Text.Combine(columns, ",") & "&for=" & geography,
     data.response = Web.Contents(data.url),
     data.responseMetadata = Value.Metadata(data.response),
     data.responseCode = data.responseMetadata[Response.Status],
